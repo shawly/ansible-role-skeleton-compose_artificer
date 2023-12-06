@@ -4,7 +4,7 @@ version: "3"
 
 services:
   app:
-    image: {{ role_name }}:{{ '{{ ' ~ role_name ~ '_container_image_tag | default(__default_container_image_tag) }}' }}
+    image: {{ role_name }}:{{ '{{ ' ~ role_name ~ '_container_image_tag | default(\'latest\') }}' }}
     container_name: {{ '"{{ ' ~ role_name }}_container_name | default(project_name) {{ '}}"' }}
     labels:
       traefik.enable: true
