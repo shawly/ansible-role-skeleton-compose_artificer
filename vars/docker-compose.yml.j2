@@ -1,0 +1,26 @@
+# code: language=docker-compose
+---
+version: "3"
+
+services:
+  app:
+    image: {{ role_name }}:{{ '{{ ' ~ role_name ~ '_container_image_tag | default(__default_container_image_tag) }}' }}
+    container_name: {{ '"{{ ' ~ role_name }}_container_name | default(project_name) {{ '}}"' }}
+    labels:
+      traefik.enable: true
+      traefik.http.routers.{{ role_name }}-http.service: {{ role_name }}
+      traefik.http.routers.{{ role_name }}-http.entrypoints: web
+      traefik.http.routers.{{ role_name }}-http.rule: Host(`{{ '{{' }} traefik_subdomain {{ '}}' }}.{{ '{{' }} traefik_domain {{ '}}' }}`)
+      traefik.http.routers.{{ role_name }}.service: {{ role_name }}
+      traefik.http.routers.{{ role_name }}.entrypoints: web-secure
+      traefik.http.routers.{{ role_name }}.middlewares: secHeaders@file
+      traefik.http.routers.{{ role_name }}.rule: Host(`{{ '{{' }} traefik_subdomain {{ '}}' }}.{{ '{{' }} traefik_domain {{ '}}' }}`)
+      traefik.http.routers.{{ role_name }}.tls: true
+      traefik.http.routers.{{ role_name }}.tls.certresolver: cloudflare
+      traefik.http.services.{{ role_name }}.loadbalancer.server.port: "{{ '{{' }} traefik_port {{ '}}' }}"
+    ports: []
+    volumes: {}
+    networks: {}
+
+networks: {}
+volumes: {}

@@ -1,0 +1,53 @@
+---
+# tasks file for {{ role_name }}
+
+- name: Set facts for {{ role_name }}
+  ansible.builtin.import_role:
+    name: compose_artificer
+    tasks_from: set_facts
+  vars:
+    compose_artificer_role_prefix: "{{ role_name }}"
+    compose_artificer_compose_project_name: "{{ '{{' }} {{ role_name }}_compose_project_name {{ '}}' }}"
+  tags:
+    - {{ role_name }}_migrate
+    - {{ role_name }}_install
+    - {{ role_name }}_run
+
+- name: Set additional facts for {{ role_name }}
+  ansible.builtin.import_tasks: set_facts.yml
+  tags:
+    - {{ role_name }}_migrate
+    - {{ role_name }}_install
+    - {{ role_name }}_run
+
+- name: Migrate data from old location
+  ansible.builtin.import_role:
+    name: compose_artificer
+    tasks_from: migrate
+  when: {{ role_name }}_old_install_dir is defined
+  tags:
+    - {{ role_name }}_migrate
+
+- name: Install files for {{ role_name }}
+  ansible.builtin.import_role:
+    name: compose_artificer
+    tasks_from: install
+  tags:
+    - {{ role_name }}_install
+
+- name: Install additional files for {{ role_name }}
+  ansible.builtin.import_tasks: install.yml
+  tags:
+    - {{ role_name }}_install
+
+- name: Run services for {{ role_name }}
+  ansible.builtin.import_role:
+    name: compose_artificer
+    tasks_from: run
+  tags:
+    - {{ role_name }}_run
+
+- name: Run additional tasks for {{ role_name }}
+  ansible.builtin.import_tasks: run.yml
+  tags:
+    - {{ role_name }}_run
