@@ -5,19 +5,19 @@ version: "3"
 services:
   app:
     image: {{ role_name }}:{{ '{{ ' ~ role_name ~ '_container_image_tag | default(\'latest\') }}' }}
-    container_name: {{ '"{{ ' ~ role_name }}_container_name | default(project_name) {{ '}}"' }}
+    container_name: {{ '"{{ ' ~ role_name ~ '_container_name | default(' ~ role_name ~ '_compose_project_name) }}"' }}
     labels:
       traefik.enable: true
       traefik.http.routers.{{ role_name }}-http.service: {{ role_name }}
       traefik.http.routers.{{ role_name }}-http.entrypoints: web
-      traefik.http.routers.{{ role_name }}-http.rule: Host(`{{ '{{' }} traefik_subdomain {{ '}}' }}.{{ '{{' }} traefik_domain {{ '}}' }}`)
+      traefik.http.routers.{{ role_name }}-http.rule: Host(`{{ '{{ ' ~ role_name ~ '_traefik_subdomain }}' }}.{{ '{{ ' ~ role_name ~ '_traefik_domain }}' }}`)
       traefik.http.routers.{{ role_name }}.service: {{ role_name }}
       traefik.http.routers.{{ role_name }}.entrypoints: web-secure
       traefik.http.routers.{{ role_name }}.middlewares: secHeaders@file
-      traefik.http.routers.{{ role_name }}.rule: Host(`{{ '{{' }} traefik_subdomain {{ '}}' }}.{{ '{{' }} traefik_domain {{ '}}' }}`)
+      traefik.http.routers.{{ role_name }}.rule: Host(`{{ '{{ ' ~ role_name ~ '_traefik_subdomain }}' }}.{{ '{{ ' ~ role_name ~ '_traefik_domain }}' }}`)
       traefik.http.routers.{{ role_name }}.tls: true
       traefik.http.routers.{{ role_name }}.tls.certresolver: cloudflare
-      traefik.http.services.{{ role_name }}.loadbalancer.server.port: "{{ '{{' }} traefik_port {{ '}}' }}"
+      traefik.http.services.{{ role_name }}.loadbalancer.server.port: "{{ '{{ ' ~ role_name ~ '_traefik_port }}' }}"
     ports: []
     volumes: {}
     networks: {}
