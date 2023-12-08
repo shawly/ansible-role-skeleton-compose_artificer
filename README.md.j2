@@ -4,22 +4,23 @@ A brief description of the role goes here.
 
 ## Requirements
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+Any pre-requisites that may not be covered by Ansible itself or the role should
+be mentioned here. For instance, if the role uses the EC2 module, it may be a
+good idea to mention in this section that the boto package is required.
 
 ## Role Variables
 
-| Variable                              | Default Value     | Description                                                                                                                                                  |
-| ------------------------------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `compose_artificer_timezone`        | `Europe/Berlin`   | The timezone for the containers.                                                                                                                             |
-| `traefik_domain`                      | unset             | The top level domain for your services.                                                                                                                      |
-| `{{ role_name }}_compose_project_name`        | `{{ role_name }}` | Will be used for the compose stack name.                                                                                                                         |
-| `{{ role_name }}_compose_install_dir` | unset | Installation directory where the docker-compose.yml will be located. Defaults to `/srv/{{ role_name }}`                                                      |
-| `{{ role_name }}_compose_project_root_dir` | unset | Data directory where all data volumes bind mounts will be created. Defaults to `/srv/{{ role_name }}`                                                        |
-| `{{ role_name }}_compose_project_dirs`        | `{}`              | Additional project directories. Must be in format `{ dirkey: { dir: {{ '{{ ' ~ role_name }}_compose_project_root_dir.dir {{ '}}' }}/path, mode: "0755", owner: "root", group: "root" } }` |
-| `{{ role_name }}_container_image_tag` | unset             | The tag for the {{ role_name }} docker image.                                                                                                                |
-| `{{ role_name }}_compose_overrides`   | `{}`              | Overrides for the {{ role_name }} docker-compose file. Must be in docker-compose format!                                                                     |
-| `{{ role_name }}_traefik_subdomain`   | `{{ role_name }}` | The subdomain for {{ role_name }} application.                                                                                                               |
-| `{{ role_name }}_traefik_port`        | `80`              | The port for {{ role_name }} web ui.                                                                                                                         |
+| Variable                                   | Default Value     | Description                                                                                                                                                                               |
+| ------------------------------------------ | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `traefik_domain`                           | unset             | The top level domain for your services.                                                                                                                                                   |
+| `{{ role_name }}_compose_project_name`     | `{{ role_name }}` | Will be used for the compose stack name.                                                                                                                                                  |
+| `{{ role_name }}_compose_install_dir`      | unset             | Installation directory where the docker-compose.yml will be located. Defaults to `/srv/{{ role_name }}`                                                                                   |
+| `{{ role_name }}_compose_project_root_dir` | unset             | Data directory where all data volumes bind mounts will be created. Defaults to `/srv/{{ role_name }}`                                                                                     |
+| `{{ role_name }}_compose_project_dirs`     | `{}`              | Additional project directories. Must be in format `{ dirkey: { dir: {{ '{{ ' ~ role_name }}_compose_project_root_dir.dir {{ '}}' }}/path, mode: "0755", owner: "root", group: "root" } }` |
+| `{{ role_name }}_container_image_tag`      | unset             | The tag for the {{ role_name }} docker image.                                                                                                                                             |
+| `{{ role_name }}_compose_overrides`        | `{}`              | Overrides for the {{ role_name }} docker-compose file. Must be in docker-compose format!                                                                                                  |
+| `{{ role_name }}_traefik_subdomain`        | `{{ role_name }}` | The subdomain for {{ role_name }} application.                                                                                                                                            |
+| `{{ role_name }}_traefik_port`             | `80`              | The port for {{ role_name }} web ui.                                                                                                                                                      |
 
 ## Dependencies
 
@@ -27,7 +28,8 @@ Any pre-requisites that may not be covered by Ansible itself or the role should 
 
 ## Example Playbook
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+Including an example of how to use your role (for instance, with variables
+passed in as parameters) is always nice for users too:
 
 ```yaml
 - hosts: servers
