@@ -20,7 +20,7 @@ services:
       traefik.http.routers.{{ role_name }}.tls.certresolver: cloudflare
       traefik.http.services.{{ role_name }}.loadbalancer.server.port: "{{ '{{ ' ~ role_name ~ '_traefik_port }}' }}"
     ports: []
-    volumes: {}
+    volumes: []
     networks: {}
 
 networks: {}

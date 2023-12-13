@@ -1,7 +1,7 @@
 ---
 # tasks file for {{ role_name }}
 
-- name: Set facts for compose_artificer
+- name: Set facts for shawly.compose_artificer
   ansible.builtin.set_fact:
     compose_artificer_role_prefix: "{{ '{{' }} role_name {{ '}}' }}"
     compose_artificer_compose_project_name: "{{ '{{' }} {{ role_name }}_compose_project_name {{ '}}' }}"
@@ -12,7 +12,7 @@
 
 - name: Set facts for {{ role_name }}
   ansible.builtin.import_role:
-    name: compose_artificer
+    name: shawly.compose_artificer
     tasks_from: set_facts
   tags:
     - {{ role_name }}_migrate
@@ -28,7 +28,7 @@
 
 - name: Migrate data from old location
   ansible.builtin.import_role:
-    name: compose_artificer
+    name: shawly.compose_artificer
     tasks_from: migrate
   when: {{ role_name }}_migrate_dir is defined
   tags:
@@ -36,7 +36,7 @@
 
 - name: Install files for {{ role_name }}
   ansible.builtin.import_role:
-    name: compose_artificer
+    name: shawly.compose_artificer
     tasks_from: install
   tags:
     - {{ role_name }}_install
@@ -48,7 +48,7 @@
 
 - name: Run services for {{ role_name }}
   ansible.builtin.import_role:
-    name: compose_artificer
+    name: shawly.compose_artificer
     tasks_from: run
   tags:
     - {{ role_name }}_run
