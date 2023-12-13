@@ -1,8 +1,8 @@
 ---
 galaxy_info:
-  role_name: {{ role_name }}
-  author: author
-  description: {{ role_name }} description.
+  role_name: compose_artificer_skeleton
+  author: shawly
+  description: An Ansible role for spinning up a service that checks for unhealthy containers and restarts them.
   license: GPL-3.0-or-later
   min_ansible_version: "2.1"
   platforms:
@@ -19,7 +19,7 @@ galaxy_info:
     - docker
     - compose
     - artificer
+    - skeleton
     - utility
 
-dependencies:
-  - role: shawly.compose_artificer
+dependencies: []
