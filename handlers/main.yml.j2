@@ -7,4 +7,4 @@
     cmd: docker compose --progress=plain restart
     chdir: "{{ '{{ ' ~ role_name ~ '_install_dir.dir }}' }}"
   changed_when: true
-  when: not _docker_compose.changed
+  when: not compose_artificer_compose_file.changed
