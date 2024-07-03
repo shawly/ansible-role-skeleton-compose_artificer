@@ -1,10 +1,2 @@
 ---
 # handlers file for {{ role_name }}
-
-- name: Restart services
-  become: true
-  ansible.builtin.command:
-    cmd: docker compose --progress=plain restart
-    chdir: "{{ '{{ ' ~ role_name ~ '_install_dir.dir }}' }}"
-  changed_when: true
-  when: not compose_artificer_compose_file.changed
