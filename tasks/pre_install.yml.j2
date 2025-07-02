@@ -1,0 +1,7 @@
+---
+# Pre-install hook for {{ role_name }}
+
+- name: pre_install | Executing pre-install hooks for {{ role_name }}
+  ansible.builtin.debug:
+    msg: Executing pre-install hooks for {{ role_name }}
+    verbosity: 1

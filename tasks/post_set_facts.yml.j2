@@ -1,0 +1,7 @@
+---
+# Post-set facts hook for {{ role_name }}
+
+- name: post_set_facts | Executing post-hooks for {{ role_name }}
+  ansible.builtin.debug:
+    msg: Executing post-hooks for {{ role_name }}
+    verbosity: 1

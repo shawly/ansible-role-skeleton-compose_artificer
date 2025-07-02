@@ -1,0 +1,7 @@
+---
+# Post-run hook for {{ role_name }}
+
+- name: post_run | Executing post-run hooks for {{ role_name }}
+  ansible.builtin.debug:
+    msg: Executing post-run hooks for {{ role_name }}
+    verbosity: 1

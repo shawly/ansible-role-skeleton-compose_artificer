@@ -1,0 +1,7 @@
+---
+# Post-install hook for {{ role_name }}
+
+- name: post_install | Executing post-install hooks for {{ role_name }}
+  ansible.builtin.debug:
+    msg: Executing post-install hooks for {{ role_name }}
+    verbosity: 1

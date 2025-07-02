@@ -1,0 +1,7 @@
+---
+# Post-migrate hook for {{ role_name }}
+
+- name: post_migrate | Executing post-migrate hooks for {{ role_name }}
+  ansible.builtin.debug:
+    msg: Executing post-migrate hooks for {{ role_name }}
+    verbosity: 1

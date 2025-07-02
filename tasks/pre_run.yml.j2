@@ -1,0 +1,7 @@
+---
+# Pre-run hook for {{ role_name }}
+
+- name: pre_run | Executing pre-run hooks for {{ role_name }}
+  ansible.builtin.debug:
+    msg: Executing pre-run hooks for {{ role_name }}
+    verbosity: 1

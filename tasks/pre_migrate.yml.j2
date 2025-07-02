@@ -1,0 +1,7 @@
+---
+# Pre-migrate hook for {{ role_name }}
+
+- name: pre_migrate | Executing pre-migrate hooks for {{ role_name }}
+  ansible.builtin.debug:
+    msg: Executing pre-migrate hooks for {{ role_name }}
+    verbosity: 1

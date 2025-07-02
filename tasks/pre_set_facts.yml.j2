@@ -1,0 +1,9 @@
+---
+# Pre-set facts hook for {{ role_name }}
+# Keep in mind that you will have no role-specific variables available
+# here except defaults, this is executed before compose_artificer sets any facts!
+
+- name: pre_set_facts | Executing pre-hooks for {{ role_name }}
+  ansible.builtin.debug:
+    msg: Executing pre-hooks for {{ role_name }}
+    verbosity: 1
