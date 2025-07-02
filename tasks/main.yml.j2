@@ -2,6 +2,10 @@
 # tasks file for {{ role_name }}
 
 - name: Set facts block for {{ role_name }}
+  tags:
+    - {{ role_name }}_migrate
+    - {{ role_name }}_install
+    - {{ role_name }}_run
   block:
     - name: Pre-set facts hook for {{ role_name }}
       ansible.builtin.import_tasks: pre_set_facts.yml
@@ -13,12 +17,10 @@
 
     - name: Post-set facts hook for {{ role_name }}
       ansible.builtin.import_tasks: post_set_facts.yml
-  tags:
-    - {{ role_name }}_migrate
-    - {{ role_name }}_install
-    - {{ role_name }}_run
 
 - name: Migrate block for {{ role_name }}
+  tags:
+    - {{ role_name }}_migrate
   block:
     - name: Pre-migrate hook for {{ role_name }}
       ansible.builtin.import_tasks: pre_migrate.yml
@@ -31,10 +33,10 @@
     - name: Post-migrate hook for {{ role_name }}
       ansible.builtin.import_tasks: post_migrate.yml
   when: {{ role_name }}_migrate_dir is defined
-  tags:
-    - {{ role_name }}_migrate
 
 - name: Install block for {{ role_name }}
+  tags:
+    - {{ role_name }}_install
   block:
     - name: Pre-install hook for {{ role_name }}
       ansible.builtin.import_tasks: pre_install.yml
@@ -46,10 +48,10 @@
 
     - name: Post-install hook for {{ role_name }}
       ansible.builtin.import_tasks: post_install.yml
-  tags:
-    - {{ role_name }}_install
 
 - name: Run block for {{ role_name }}
+  tags:
+    - {{ role_name }}_run
   block:
     - name: Pre-run hook for {{ role_name }}
       ansible.builtin.import_tasks: pre_run.yml
@@ -61,5 +63,3 @@
 
     - name: Post-run hook for {{ role_name }}
       ansible.builtin.import_tasks: post_run.yml
-  tags:
-    - {{ role_name }}_run
