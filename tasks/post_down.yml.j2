@@ -1,0 +1,7 @@
+---
+# Post-down hook for {{ role_name }}
+
+- name: post_down | Executing post-down hooks for {{ role_name }}
+  ansible.builtin.debug:
+    msg: Executing post-down hooks for {{ role_name }}
+    verbosity: 1

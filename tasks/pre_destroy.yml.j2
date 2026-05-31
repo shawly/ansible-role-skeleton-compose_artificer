@@ -1,0 +1,7 @@
+---
+# Pre-destroy hook for {{ role_name }}
+
+- name: pre_destroy | Executing pre-destroy hooks for {{ role_name }}
+  ansible.builtin.debug:
+    msg: Executing pre-destroy hooks for {{ role_name }}
+    verbosity: 1

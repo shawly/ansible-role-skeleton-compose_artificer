@@ -1,0 +1,7 @@
+---
+# Post-destroy hook for {{ role_name }}
+
+- name: post_destroy | Executing post-destroy hooks for {{ role_name }}
+  ansible.builtin.debug:
+    msg: Executing post-destroy hooks for {{ role_name }}
+    verbosity: 1

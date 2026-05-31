@@ -1,0 +1,7 @@
+---
+# Pre-down hook for {{ role_name }}
+
+- name: pre_down | Executing pre-down hooks for {{ role_name }}
+  ansible.builtin.debug:
+    msg: Executing pre-down hooks for {{ role_name }}
+    verbosity: 1
