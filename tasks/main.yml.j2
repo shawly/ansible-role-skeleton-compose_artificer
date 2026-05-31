@@ -80,6 +80,7 @@
   tags:
     - never
     - {{ role_name }}_down
+  when: '"{{ role_name }}_down" in ansible_run_tags'
   block:
     - name: Pre-down hook for {{ role_name }}
       ansible.builtin.import_tasks: pre_down.yml
@@ -91,7 +92,6 @@
 
     - name: Post-down hook for {{ role_name }}
       ansible.builtin.import_tasks: post_down.yml
-  when: '"{{ role_name }}_down" in ansible_run_tags'
 
 # wipe with: ansible-playbook ... --tags {{ role_name }}_destroy
 # the `never` tag ensures this only runs when the tag is explicitly requested
