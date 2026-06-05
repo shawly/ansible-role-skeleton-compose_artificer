@@ -27,6 +27,7 @@
     - {{ role_name }}
     - compose_artificer
     - {{ role_name }}_migrate
+  when: {{ role_name }}_migrate_dir is defined
   block:
     - name: Pre-migrate hook for {{ role_name }}
       ansible.builtin.import_tasks: pre_migrate.yml
@@ -38,7 +39,6 @@
 
     - name: Post-migrate hook for {{ role_name }}
       ansible.builtin.import_tasks: post_migrate.yml
-  when: {{ role_name }}_migrate_dir is defined
 
 - name: Install block for {{ role_name }}
   tags:
@@ -99,6 +99,7 @@
   tags:
     - never
     - {{ role_name }}_destroy
+  when: '"{{ role_name }}_destroy" in ansible_run_tags'
   block:
     - name: Pre-destroy hook for {{ role_name }}
       ansible.builtin.import_tasks: pre_destroy.yml
@@ -110,4 +111,3 @@
 
     - name: Post-destroy hook for {{ role_name }}
       ansible.builtin.import_tasks: post_destroy.yml
-  when: '"{{ role_name }}_destroy" in ansible_run_tags'
