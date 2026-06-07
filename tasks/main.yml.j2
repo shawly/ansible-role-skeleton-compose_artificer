@@ -74,13 +74,10 @@
     - name: Post-run hook for {{ role_name }}
       ansible.builtin.import_tasks: post_run.yml
 
-# tear down with: ansible-playbook ... --tags {{ role_name }}_down
-# the `never` tag ensures this only runs when the tag is explicitly requested
 - name: Down block for {{ role_name }}
   tags:
     - never
     - {{ role_name }}_down
-  when: '"{{ role_name }}_down" in ansible_run_tags'
   block:
     - name: Pre-down hook for {{ role_name }}
       ansible.builtin.import_tasks: pre_down.yml
@@ -93,13 +90,10 @@
     - name: Post-down hook for {{ role_name }}
       ansible.builtin.import_tasks: post_down.yml
 
-# wipe with: ansible-playbook ... --tags {{ role_name }}_destroy
-# the `never` tag ensures this only runs when the tag is explicitly requested
 - name: Destroy block for {{ role_name }}
   tags:
     - never
     - {{ role_name }}_destroy
-  when: '"{{ role_name }}_destroy" in ansible_run_tags'
   block:
     - name: Pre-destroy hook for {{ role_name }}
       ansible.builtin.import_tasks: pre_destroy.yml
